@@ -64,11 +64,20 @@ export default function Quotes() {
   }
 
   const deleteQuote = (id) => {
-    debugger
     // We need to hit the quotesURL with a DELETE request.
     // the id of the quote that needs deleting will go
     // at the end of the url (don't forget the forward slash)
     // On success we show the updated quotes WITHOUT REFETCHING
+    axios()
+      .delete(`${quotesURL}/${id}`)
+      .then(res => {
+        debugger
+        setCurrentQuoteId(null)
+        setQuotes(quotes.filter(quote => quote.id !== id))
+      })
+      .catch(err => {
+        debugger
+      })
   }
 
   return (
