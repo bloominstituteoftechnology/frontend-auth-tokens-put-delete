@@ -23,9 +23,11 @@ export default function Quotes() {
   }, [])
 
   const getCurrentQuote = () => {
+    debugger
     // We need a utility function that can look at the
     // `currentQuoteId` and fish out the complete quote
     // object from the `quotes` slice of state
+    // Please return the whole quote object!
   }
 
   const updateQuote = ({ id, text, author }) => {
