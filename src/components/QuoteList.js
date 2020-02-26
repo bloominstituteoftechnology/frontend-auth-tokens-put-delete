@@ -41,7 +41,8 @@ export default function Quotes() {
         setCurrentQuoteId(null)
         // TWO OPTIONS TO UPDATE THE LIST OF QUOTES
         //   1- trigger a re-fetch
-        //   2- manipulate the slice of state "quotes" to replace the quote
+        //   2- manipulate the slice of state "quotes" to replace the
+        //      correct quote with the updated quote inside res.data
 
       })
       .catch(err => {
