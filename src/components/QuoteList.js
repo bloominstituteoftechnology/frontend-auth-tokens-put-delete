@@ -71,9 +71,9 @@ export default function Quotes() {
     axios()
       .delete(`${quotesURL}/${id}`)
       .then(res => {
-        debugger
         setCurrentQuoteId(null)
-        setQuotes(quotes.filter(quote => quote.id !== id))
+        const quotesThatSurvive = quotes.filter(quote => quote.id !== id)
+        setQuotes(quotesThatSurvive)
       })
       .catch(err => {
         debugger
