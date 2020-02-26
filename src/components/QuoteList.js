@@ -77,10 +77,10 @@ export default function Quotes() {
           {
             props => (
               <Form>
-                <Field name='text' />
+                <Field name='text' placeholder='text' />
                 <ErrorMessage name='text' component='span' />
 
-                <Field name='author' />
+                <Field name='author' placeholder='author' />
                 <ErrorMessage name='author' component='span' />
 
                 <input type='submit' />
