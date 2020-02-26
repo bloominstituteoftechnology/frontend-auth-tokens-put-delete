@@ -26,7 +26,6 @@ export default function Quotes() {
     // We need a utility function that can look at the
     // `currentQuoteId` and fish out the complete quote
     // object from the `quotes` slice of state
-    return quotes.find(quote => quote.id === currentQuoteId)
   }
 
   const updateQuote = ({ id, text, author }) => {
@@ -35,15 +34,6 @@ export default function Quotes() {
     // at the end of the url (don't forget the forward slash)
     // The payload of the request will be both `text` and `author`.
     // On success we should make the form disappear and fetch all quotes.
-    axios().put(`${quotesURL}/${id}`, { text, author })
-      .then(res => {
-        setCurrentQuoteId(null)
-        getAllQuotes()
-      })
-      .catch(error => {
-        debugger
-        console.error(error)
-      })
   }
 
   const deleteQuote = (id) => {
@@ -51,14 +41,6 @@ export default function Quotes() {
     // the id of the quote that needs deleting will go
     // at the end of the url (don't forget the forward slash)
     // On success we show the updated quotes WITHOUT REFETCHING
-    axios().delete(`${quotesURL}/${id}`)
-      .then(response => {
-        setCurrentQuoteId(null)
-        setQuotes(quotes.filter(quote => quote.id !== id))
-      })
-      .catch(error => {
-        console.error(error)
-      })
   }
 
   return (
@@ -77,7 +59,8 @@ export default function Quotes() {
       {
         currentQuoteId &&
         <Formik
-          // If the key of a component changes, the component is re-mounted!!!
+          // If the key of a component changes
+          // the form gets re-mounted with fresh "initialValues"
           key={currentQuoteId}
           initialValues={{
             text: getCurrentQuote().text,

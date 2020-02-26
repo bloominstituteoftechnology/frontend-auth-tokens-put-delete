@@ -4,6 +4,7 @@ import Login from './Login'
 import Quotes from './QuoteList'
 
 export function Container(props) {
+  // implement logout functionality
   return (
     <div className='container'>
       <nav>
@@ -15,14 +16,9 @@ export function Container(props) {
       </nav>
 
       <main>
-        {/* <Route path='/login' component={Login} /> */}
         <Route path='/login'>
           <Login foo='bar' />
         </Route>
-
-        {/* we need to fix this so we can't do this route
-        unless there is a token in local storage */}
-        {/* <Route exact path='/' component={Quotes} /> */}
 
         <RouteProtected exact path='/'>
           <Quotes />
@@ -33,7 +29,6 @@ export function Container(props) {
 }
 
 function RouteProtected({ children, ...rest }) {
-  // pull token from local storage
   const tokenExists = localStorage.getItem('token')
   return (
     <Route {...rest}>
