@@ -32,13 +32,20 @@ export default function Quotes() {
   }
 
   const updateQuote = ({ id, text, author }) => {
+    // We need to hit the quotesURL with a PUT request.
+    // the id of the quote that needs replacing will go
+    // at the end of the url (don't forget the forward slash)
+    // The payload of the request will be both `text` and `author`.
+    // On success we should make the form disappear and fetch all quotes.
+
     // IS THIS EVEN BEING CALLED????
     axios()
       .put(`${quotesURL}/${id}`, { text, author })
       .then(res => {
-        // MAKE FORM DISAPPEAR
+        // remember to check res using the debugger!!!!!!!
+        // A- MAKE FORM DISAPPEAR
         setCurrentQuoteId(null)
-        // TWO OPTIONS TO UPDATE THE LIST OF QUOTES
+        // B- TWO OPTIONS TO UPDATE THE LIST OF QUOTES
         //   1- trigger a re-fetch // getAllQuotes() // extra AJAX request
         //   2- manipulate the slice of state "quotes" to replace the
         //      correct quote with the updated quote inside res.data
@@ -50,20 +57,14 @@ export default function Quotes() {
             return q
           })
         })
-        // res.data  { id text author }
       })
       .catch(err => {
         debugger
       })
-
-    // We need to hit the quotesURL with a PUT request.
-    // the id of the quote that needs replacing will go
-    // at the end of the url (don't forget the forward slash)
-    // The payload of the request will be both `text` and `author`.
-    // On success we should make the form disappear and fetch all quotes.
   }
 
   const deleteQuote = (id) => {
+    debugger
     // We need to hit the quotesURL with a DELETE request.
     // the id of the quote that needs deleting will go
     // at the end of the url (don't forget the forward slash)
