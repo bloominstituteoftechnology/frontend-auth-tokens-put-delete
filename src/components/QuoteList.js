@@ -36,14 +36,21 @@ export default function Quotes() {
     axios()
       .put(`${quotesURL}/${id}`, { text, author })
       .then(res => {
-        debugger
         // MAKE FORM DISAPPEAR
         setCurrentQuoteId(null)
         // TWO OPTIONS TO UPDATE THE LIST OF QUOTES
         //   1- trigger a re-fetch
         //   2- manipulate the slice of state "quotes" to replace the
         //      correct quote with the updated quote inside res.data
-
+        setQuotes(currentQuotes => {
+          return currentQuotes.map(q => {
+            if (q.id === id) {
+              return res.data
+            }
+            return q
+          })
+        })
+        // res.data  { id text author }
       })
       .catch(err => {
         debugger
