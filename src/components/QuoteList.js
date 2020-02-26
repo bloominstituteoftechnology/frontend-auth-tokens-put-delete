@@ -9,7 +9,7 @@ export default function Quotes() {
   const [currentQuoteId, setCurrentQuoteId] = useState(null)
 
   const getAllQuotes = () => {
-    axios().get(quotesURL) // the replacement axios is a bit diff and has to be invoked
+    axios().get(quotesURL)
       .then(response => {
         setQuotes(response.data)
       })
@@ -35,9 +35,9 @@ export default function Quotes() {
     // at the end of the url (don't forget the forward slash)
     // The payload of the request will be both `text` and `author`.
     // On success we should make the form disappear and fetch all quotes.
-    axios().put(`${quotesURL}/${id}`, { text, author }) // the replacement axios is a bit diff and has to be invoked
+    axios().put(`${quotesURL}/${id}`, { text, author })
       .then(res => {
-        setCurrentQuoteId(null) // very prudent
+        setCurrentQuoteId(null)
         getAllQuotes()
       })
       .catch(error => {
@@ -51,9 +51,9 @@ export default function Quotes() {
     // the id of the quote that needs deleting will go
     // at the end of the url (don't forget the forward slash)
     // On success we show the updated quotes WITHOUT REFETCHING
-    axios().delete(`${quotesURL}/${id}`) // the replacement axios is a bit diff and has to be invoked
+    axios().delete(`${quotesURL}/${id}`)
       .then(response => {
-        setCurrentQuoteId(null) // very prudent
+        setCurrentQuoteId(null)
         setQuotes(quotes.filter(quote => quote.id !== id))
       })
       .catch(error => {
@@ -77,7 +77,7 @@ export default function Quotes() {
       {
         currentQuoteId &&
         <Formik
-          // If the key of a component changes, the component is re-mounted
+          // If the key of a component changes, the component is re-mounted!!!
           key={currentQuoteId}
           initialValues={{
             text: getCurrentQuote().text,
