@@ -39,7 +39,7 @@ export default function Quotes() {
         // MAKE FORM DISAPPEAR
         setCurrentQuoteId(null)
         // TWO OPTIONS TO UPDATE THE LIST OF QUOTES
-        //   1- trigger a re-fetch
+        //   1- trigger a re-fetch // getAllQuotes() // extra AJAX request
         //   2- manipulate the slice of state "quotes" to replace the
         //      correct quote with the updated quote inside res.data
         setQuotes(currentQuotes => {
