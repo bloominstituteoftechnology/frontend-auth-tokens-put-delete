@@ -32,6 +32,22 @@ export default function Quotes() {
   }
 
   const updateQuote = ({ id, text, author }) => {
+    // IS THIS EVEN BEING CALLED????
+    axios()
+      .put(`${quotesURL}/${id}`, { text, author })
+      .then(res => {
+        debugger
+        // MAKE FORM DISAPPEAR
+        setCurrentQuoteId(null)
+        // TWO OPTIONS TO UPDATE THE LIST OF QUOTES
+        //   1- trigger a re-fetch
+        //   2- manipulate the slice of state "quotes" to replace the quote
+
+      })
+      .catch(err => {
+        debugger
+      })
+
     // We need to hit the quotesURL with a PUT request.
     // the id of the quote that needs replacing will go
     // at the end of the url (don't forget the forward slash)
