@@ -23,11 +23,12 @@ export default function Quotes() {
   }, [])
 
   const getCurrentQuote = () => {
-    debugger
+    const currentQuote = quotes.find(quote => quote.id === currentQuoteId)
     // We need a utility function that can look at the
     // `currentQuoteId` and fish out the complete quote
     // object from the `quotes` slice of state
     // Please return the whole quote object!
+    return currentQuote
   }
 
   const updateQuote = ({ id, text, author }) => {
