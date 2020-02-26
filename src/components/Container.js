@@ -1,10 +1,17 @@
 import React from 'react'
 import { Route, NavLink, Redirect, withRouter } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import Login from './Login'
 import Quotes from './QuoteList'
 
 export function Container(props) {
-  // implement logout functionality
+  const history = useHistory()
+
+  const onLogout = (evt) => {
+    localStorage.removeItem('token')
+    history.push('/login')
+  }
+
   return (
     <div className='container'>
       <nav>
@@ -12,7 +19,7 @@ export function Container(props) {
           <NavLink exact to='/'>Quotes</NavLink>
           <NavLink to='/login'>Login</NavLink>
         </span>
-        <button>Logout</button>
+        <button onClick={onLogout}>Logout</button>
       </nav>
 
       <main>
